@@ -1,15 +1,29 @@
 import React, { useEffect } from 'react'
 import { Button, Form, Input } from "antd";
 import { Link , useNavigate } from "react-router-dom";
-
+import { RegisterUser } from '../calls/users';
 import {message} from 'antd'
 
 
 function Login() {
   
   const onFinish = async (values)=>{
-    console.log(values)
-   
+    console.log(values);
+  //  try{
+  //   console.log("trying to register user before");
+  //   const response = await LoginUser(values);
+  //   if(response.sucess)
+  //   {
+  //     message.success(response.message);
+  //   }
+  //   else
+  //   {
+  //     message.error(response.message);
+  //   }
+  //  }
+  //   catch(error){
+  //     console.log(error)
+  //   }
   }
 
  
