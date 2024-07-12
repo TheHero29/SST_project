@@ -11,6 +11,7 @@ function Register() {
       const response = await RegisterUser(values);
       if(response.sucess)
       {
+        console.log("sucess");
         message.success(response.message);
       }
       else

@@ -3,27 +3,29 @@ import { Button, Form, Input } from "antd";
 import { Link , useNavigate } from "react-router-dom";
 import { RegisterUser } from '../calls/users';
 import {message} from 'antd'
-
+import {LoginUser} from '../calls/users'
 
 function Login() {
   
   const onFinish = async (values)=>{
     console.log(values);
-  //  try{
-  //   console.log("trying to register user before");
-  //   const response = await LoginUser(values);
-  //   if(response.sucess)
-  //   {
-  //     message.success(response.message);
-  //   }
-  //   else
-  //   {
-  //     message.error(response.message);
-  //   }
-  //  }
-  //   catch(error){
-  //     console.log(error)
-  //   }
+   try{
+    console.log("trying to register user before");
+    const response = await LoginUser(values);
+    if(response.sucess)
+    {
+      message.success(response.message);
+      localStorage.setItem('token',response.token);
+      navigate('/');
+    }
+    else
+    {
+      message.error(response.message);
+    }
+   }
+    catch(error){
+      console.log(error)
+    }
   }
 
  
