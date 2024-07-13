@@ -59,14 +59,15 @@ router.post("/login", async (req, res) => {
     }
     
     //creating token or signing the token
-    const token = jwt.sign({_id:userExist._id},process.env.TOKEN_SECRET,{expiresIn:"1d"});
+    const token = jwt.sign({userId:userExist._id},process.env.TOKEN_SECRET,{expiresIn:"1d"});
 
     res.status(200).send({
       success:true,
       message:"User logged in successfully",
+      //we are also sending the token to the client
       token:token
     });
-
+    console.log(token);
   }
   catch(err){
     console.log(err);
@@ -75,6 +76,7 @@ router.post("/login", async (req, res) => {
 
 });
 
+//checks for token in local storage and authorizes the user
 router.get('/get-current-user',authMiddleware, async(req,res)=>{
   try{
     const user = await User.findById(req.body.userId).select('-password');
